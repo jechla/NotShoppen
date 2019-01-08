@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="da" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="CSS/Notshopstyle.css">
+    <title>NotShoppen</title>
+    <script src="JS/log.js"> </script>
+    <script type="text/javascript" src="JS/form.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="top">
+        <h1>NotShoppen</h1>
+      </div>
+      <div class="menu">
+        <ul>
+          <li><a href="Forside.html">Forside</a></li>
+          <li><a href="Produkter.html">Produkter</a></li>
+          <li><a href="Kurv.html">Kurv</a></li>
+          <li><a class="active" id="log" href="Login.html">Login</a></li>
+        </ul>
+      </div>
+      <div class="indhold">
+        <h1>Login eller opret kunde</h1>
+            <div class="login">
+              <h2>Login</h2>
+                <table>
+                  <form id="form1" name="form1">
+                    <tr>
+                      <td width="20%">E-mail:</td>
+                      <td width="50%"><input type="text" name="username" id="username" /></td>
+                    </tr>
+                    <tr>
+                      <td>Password:</td>
+                      <td><input type="password" name="password" id="password" /></td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                    <td><br><input type="submit" name="button" id="button" value="Login" class="kurvknap" /></td>
+                    </tr>
+                  </form>
+                </table>
+            </div>
+            <div class="opretkunde">
+              <h2>Opret kunde</h2>
+                <table>
+                  <form  id="form2" method="post">
+                    <tr>
+                      <td>Navn:</td>
+                      <td><input type="text" name="navn"></td>
+                    </tr>
+                    <tr>
+                      <td>Adresse:</td>
+                      <td><input type="text" name="adresse"></td>
+                    </tr>
+                    <tr>
+                      <td>Postnummer:</td>
+                      <td><input type="text" name="postnr"></td>
+                    </tr>
+                    <tr>
+                      <td>Telefon:</td>
+                      <td><input type="tel" name="telefon"></td>
+                    </tr>
+                    <tr>
+                      <td>E-mail:</td>
+                      <td><input type="text" name="email"></td>
+                    </tr>
+                    <tr>
+                      <td>Password:</td>
+                      <td><input type="password" name="password"></td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td><br><input type="submit" name="button" value="Opret" class="kurvknap" /></td>
+                    </tr>
+                  </form>
+                </table>
+              </div>
+      </div>
+      <div class="bund">
+        <p>NotShoppen</p>
+      </div>
+    </div>
+  </body>
+
+</html>
