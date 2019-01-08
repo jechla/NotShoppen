@@ -1,0 +1,125 @@
+* {
+  font-family: verdana;
+}
+
+body {
+    background-color: lightgrey;
+}
+
+.container {
+  width: 86%;
+  margin-left: 7%;
+  margin-right: 7%;
+}
+
+.top {
+  width: 100%;
+  text-align: center;
+  float: left;
+  background-color: Dodgerblue;
+  padding-top: 20px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+
+.bund {
+  text-align: center;
+  background-color: Dodgerblue;
+  width: 100%;
+  float: left;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.indhold {
+  min-height: 450px;
+  width: 96%;
+  padding: 2% 2% 2% 2%;
+  float: left;
+  border-top: 2px solid Dodgerblue;
+  background-color: white;
+}
+
+.menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow: hidden;
+  background-color: white;
+}
+
+.menu li {
+  float: left;
+}
+
+.menu li a {
+  text-align: center;
+  display: block;
+  color: black;
+  font-size: 16px;
+  text-decoration: none;
+  padding: 12px;
+}
+
+.active {
+  background-color: Dodgerblue;
+}
+
+.menu li:last-child {
+  float: right;
+}
+
+.menu li a:hover{
+  background-color: lightblue;
+  cursor: pointer;
+}
+
+
+.login {
+    float: left;
+    width: 46%;
+    padding: 2% 2% 2% 2%;
+    vertical-align: middle;
+}
+
+.opretkunde {
+    float: left;
+    width: 46%;
+    padding: 2% 2% 2% 2%;
+    vertical-align: middle;
+}
+
+.varer {
+    float: left;
+    width: 96%;
+    padding: 2% 2% 2% 2%;
+}
+
+.billede {
+    float: left;
+    width: 20%;
+    padding: 2% 2% 2% 2%;
+}
+
+.info {
+    float: left;
+    width: 72%;
+    padding: 2% 2% 2% 2%;
+    vertical-align: middle;
+}
+
+.kurvknap {
+  color: black;
+  background-color: Dodgerblue;
+  border-radius: 5px;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 15px 32px;
+  margin: 4px 2px;
+}
