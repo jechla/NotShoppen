@@ -1,6 +1,6 @@
 window.addEventListener("load", function () {
 
-  function sendData(){
+  function sendData(formDataJson){
     var XHR = new XMLHttpRequest();
 
     XHR.addEventListener("load", function(event){
@@ -14,19 +14,19 @@ window.addEventListener("load", function () {
     XHR.addEventListener("error", function(event){
       alert("Oops");
     });
-    formStr = JSON.stringify(formDataJson);
-    XHR.open("GET", "http://localhost:8080/login/"+":"+formStr);
-
-    XHR.send();
+    var formStr = JSON.stringify(formDataJson);
+    XHR.open("POST", "http://localhost:8080/login/" );
+    XHR.setRequestHeader("Content-Type", "text/plain");
+    XHR.send(formStr);
   }
 
   //var form = document.getElementById('form1');
 
   document.getElementById('form1').addEventListener("submit", function (event) {
     event.preventDefault();
-    formDataJson = {username: document.getElementById('username').value,
+    var formDataJson = {username: document.getElementById('username').value,
                     password: document.getElementById('password').value};
-    sendData();
+    sendData(formDataJson);
   });
   document.getElementById('form2').addEventListener("submit", function (event){
     event.preventDefault();
