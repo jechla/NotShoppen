@@ -37,8 +37,8 @@ window.addEventListener("load", function () {
 
 function reqSession (respText){
   resjson = JSON.parse(respText);
-  sessionStorage.setItem("UserId", resjson.ret.UserId);
-  sessionStorage.setItem("OrderId", resjson.ret.OrderId);
+  sessionStorage.setItem("UserId", resjson.UserId);
+  sessionStorage.setItem("OrderId", resjson.OrderId);
   window.location.href = "Forside.html";
 }
 
