@@ -1,60 +1,46 @@
 window.addEventListener("load", function () {
 
-  function sendData(formDataJson){
-    var XHR = new XMLHttpRequest();
-
-    XHR.addEventListener("load", function(event){
-      //alert(event.target.responseText);
-      resjson = JSON.parse(event.target.responseText);
-      sessionStorage.setItem("UserId", resjson.UserId);
-      sessionStorage.setItem("OrderId", resjson.OrderId);
-      window.location.href = "Forside.html";
-    });
-
-    XHR.addEventListener("error", function(event){
-      alert("Oops");
-    });
-    var formStr = JSON.stringify(formDataJson);
-    XHR.open("POST", "http://localhost:8080/login/" );
-    XHR.setRequestHeader("Content-Type", "text/plain");
-    XHR.send(formStr);
-  }
-
-  //var form = document.getElementById('form1');
-
   document.getElementById('form1').addEventListener("submit", function (event) {
     event.preventDefault();
-    var formDataJson = {username: document.getElementById('username').value,
-                    password: document.getElementById('password').value};
-    sendData(formDataJson);
+    let form = document.getElementById('form1');
+    var formDataJson = {username: form.username.value,
+                        password: form.password.value};
+    formSub(formDataJson,'login');
   });
+
   document.getElementById('form2').addEventListener("submit", function (event){
     event.preventDefault();
     let form = document.getElementById('form2');
-    form2Sub(form);
+    formDataJson = {navn: form.navn.value,
+                    adresse: form.adresse.value,
+                    postnummer: form.postnr.value,
+                    telefon: form.telefon.value,
+                    email: form.email.value,
+                    password: form.password.value
+                  };
+    formSub(formDataJson,'addUser');
   });
 });
 
 function reqSession (respText){
   resjson = JSON.parse(respText);
-  sessionStorage.setItem("UserId", resjson.UserId);
-  sessionStorage.setItem("OrderId", resjson.OrderId);
-  window.location.href = "Forside.html";
+  if (resjson.UserId == false){
+    document.getElementById('notuser').innerHTML = "Forkert e-mail eller brugernavn";
+  } else {
+    sessionStorage.setItem("UserId", resjson.UserId);
+    sessionStorage.setItem("OrderId", resjson.OrderId);
+    window.location.href = "Forside.html";
+  }
 }
 
-function form2Sub(form){
-  formDataJson = {navn: form.navn.value,
-                  adresse: form.adresse.value,
-                  postnummer: form.postnr.value,
-                  telefon: form.telefon.value,
-                  email: form.email.value,
-                  password: form.password.value
-                };
-  var formStr = JSON.stringify(formDataJson);
+function formSub(form,type){
+  var formStr = JSON.stringify(form);
   var x = new XMLHttpRequest();
-  x.open("POST", "http://localhost:8080/addUser/");
+  x.open("POST", "http://localhost:8080/"+type+"/");
   x.setRequestHeader("Content-Type", "text/plain");
-
+  x.addEventListener("error", function(event){
+    alert("Oops" + x.statusText);
+  });
   x.onreadystatechange = function (){
     if (this.readyState == 4 && this.status == 200) {
       console.log(this.responseText);
