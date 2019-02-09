@@ -1,13 +1,13 @@
 function buy(nr){
   if (!sessionStorage.UserId){
-    window.location.href = "login.html";
+    window.location.href = "Login.html";
   } else {
     productBuyJSON = {UserId: sessionStorage.UserId,
                       OrderId: sessionStorage.OrderId,
                       ProductId: nr.toString()
                     };
     x = new XMLHttpRequest();
-    x.open("POST", "http://localhost:8080/buy/");
+    x.open("POST", "http://localhost:8080/addProd/");
     x.setRequestHeader("Content-Type", "text/plain");
     x.onreadystatechange = function (){
       if (this.readyState == 4 && this.status == 200) {
