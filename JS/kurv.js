@@ -60,7 +60,24 @@ function setProd(prodjson,i,basketjson){
       <h2>${prodjson.Title}</h2>
       <p>${prodjson.Description}</p>
       <p><b>Pris: </b>${prodjson.Prize}</p>
-      <p><button class="kurvknap" onclick="delete(${prodjson.ProductId},${basketjson.content[i].OrderlineId});">Slet</button></p>
+      <p><button class="kurvknap" onclick="delItem(${basketjson.content[i].OrderlineId});">Slet</button></p>
     </div>
   </div>`;
+}
+
+function delItem(id){
+  let x = new XMLHttpRequest();
+  x.open("GET", serverUrl+"delItem/?id="+id);
+  x.onreadystatechange = ()=>{
+    if (x.readyState == 4 && x.status == 200) {
+      text ="";
+      text =x.responseText;
+      if (text == "true"){
+        window.location.href = "Kurv.html";
+      } else {
+        alert("fejl");
+      }
+    }
+  }
+  x.send();
 }
