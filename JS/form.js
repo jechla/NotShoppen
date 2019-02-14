@@ -1,3 +1,5 @@
+const serverUrl = "http://localhost:8080/";
+
 window.addEventListener("load", function () {
 
   document.getElementById('form1').addEventListener("submit", function (event) {
@@ -36,7 +38,7 @@ function reqSession (respText){
 function formSub(form,type){
   var formStr = JSON.stringify(form);
   var x = new XMLHttpRequest();
-  x.open("POST", "http://localhost:8080/"+type+"/");
+  x.open("POST", serverUrl+type+"/");
   x.setRequestHeader("Content-Type", "text/plain");
   x.addEventListener("error", function(event){
     alert("Oops" + x.statusText);

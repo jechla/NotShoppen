@@ -1,7 +1,9 @@
+const serverUrl = "http://localhost:8080/";
+
 function noProd(callback){
   let no=0;
   let x = new XMLHttpRequest();
-  x.open("GET","http://localhost:8080/noProd");
+  x.open("GET",serverUrl+"noProd");
   x.onreadystatechange = () =>{
     if (x.readyState == 4 && x.status == 200) {
       no = parseInt(x.responseText,10);
@@ -18,7 +20,7 @@ function noProd(callback){
 
 function connectProd(index,callback){
   let x= new XMLHttpRequest();
-  x.open("GET","http://localhost:8080/getProd?id="+(index+1));
+  x.open("GET",serverUrl+"getProd?id="+(index+1));
   x.onreadystatechange = ()=>{
     if (x.readyState == 4 && x.status == 200) {
       text ="";
@@ -48,7 +50,7 @@ function buy(nr){
                       ProductId: nr.toString()
                     };
     x = new XMLHttpRequest();
-    x.open("POST", "http://localhost:8080/addProd/");
+    x.open("POST", serverUrl+"addProd/");
     x.setRequestHeader("Content-Type", "text/plain");
     x.onreadystatechange = function (){
       if (this.readyState == 4 && this.status == 200) {
@@ -59,11 +61,6 @@ function buy(nr){
     x.send(JSON.stringify(productBuyJSON));
 
   }
-}
-
-
-function test(buttonNo){
-  alert(`Du har trykket på knap ${buttonNo}`);
 }
 
 

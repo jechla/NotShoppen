@@ -1,3 +1,5 @@
+const serverUrl = "http://localhost:8080/";
+
 if (sessionStorage.UserId){
   let orderId =sessionStorage.getItem("OrderId");
   getBasket(orderId, decoBasket);
@@ -6,7 +8,7 @@ if (sessionStorage.UserId){
 
 function getBasket(orderId,callback){
   let x = new XMLHttpRequest();
-  x.open("GET","http://localhost:8080/basket/?id="+orderId);
+  x.open("GET",serverUrl+"basket/?id="+orderId);
   x.onreadystatechange = ()=>{
     if (x.readyState == 4 && x.status == 200){
       let text = "";
@@ -30,7 +32,7 @@ function decoBasket(basketjson){
 
 function connectProd(index,basketjson,callback){
   let x= new XMLHttpRequest();
-  x.open("GET","http://localhost:8080/getProd?id="+(basketjson.content[index].ProductId));
+  x.open("GET",serverUrl+"getProd?id="+(basketjson.content[index].ProductId));
   x.onreadystatechange = ()=>{
     if (x.readyState == 4 && x.status == 200) {
       text ="";
