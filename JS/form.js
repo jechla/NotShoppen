@@ -5,7 +5,7 @@ window.addEventListener("load", function () {
   document.getElementById('form1').addEventListener("submit", function (event) {
     event.preventDefault();
     let form = document.getElementById('form1');
-    var formDataJson = {username: form.username.value,
+    var formDataJson = {email: form.email.value,
                         password: form.password.value};
     formSub(formDataJson,'login');
   });
