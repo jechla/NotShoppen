@@ -11,7 +11,7 @@ function logout(){
 document.getElementById("log").addEventListener("click",logout);
 
 if (sessionStorage.UserId){
-  document.getElementById("log").href = "Forside.html";
+  document.getElementById("log").href = "index.html";
   document.getElementById("log").innerHTML = "Log ud";
 }
 });

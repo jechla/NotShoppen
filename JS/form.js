@@ -31,7 +31,7 @@ function reqSession (respText){
   } else {
     sessionStorage.setItem("UserId", resjson.UserId);
     sessionStorage.setItem("OrderId", resjson.OrderId);
-    window.location.href = "Forside.html";
+    window.location.href = "index.html";
   }
 }
 
