@@ -113,8 +113,9 @@ function buyStuf(){
     if (x.readyState == 4 && x.status == 200) {
       text ="";
       text =x.responseText;
-      if (text){
-        sessionStorage.setItem("OrderId",text);
+      jsontext = JSON.parse(text);
+      if (jsontext.OrderId){
+        sessionStorage.setItem("OrderId",jsontext.OrderId);
         alert("Dine ting er på vej (NOT)!");
         window.location.href = "index.html";
       } else {
