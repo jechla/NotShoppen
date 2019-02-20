@@ -1,5 +1,7 @@
 const serverUrl = "http://localhost:8080/";
 
+var basketSize=0;
+
 if (sessionStorage.UserId){
   let orderId =sessionStorage.getItem("OrderId");
   getBasket(orderId, decoBasket);
@@ -9,6 +11,9 @@ if (sessionStorage.UserId){
 function getBasket(orderId,callback){
   let x = new XMLHttpRequest();
   x.open("GET",serverUrl+"basket/?id="+orderId);
+  x.addEventListener("error", function(event){
+    alert("Oops something went wrong, try again");
+  });
   x.onreadystatechange = ()=>{
     if (x.readyState == 4 && x.status == 200){
       let text = "";
@@ -21,18 +26,24 @@ function getBasket(orderId,callback){
 
 function decoBasket(basketjson){
   let len = basketjson.content["length"];
-  let pstr ="";
-  for (let i=0; i<len; i++){
-    pstr += `<p id ="orderlineid${basketjson.content[i].OrderlineId}"></p>`;
+  basketSize =len;
+  if (len>0){
+    let pstr =`<p id="buybutton"><button class="kurvknap" onclick="buyStuf();">Køb</button></p>`;
+    for (let i=0; i<len; i++){
+      pstr += `<p id ="orderlineid${basketjson.content[i].OrderlineId}"></p>`;
+    }
+    document.getElementById('tomkurv').innerHTML = "";
+    document.getElementById('out1').innerHTML = pstr;
+    getProd(len,basketjson);
   }
-  document.getElementById('tomkurv').innerHTML = "";
-  document.getElementById('out1').innerHTML = pstr;
-  getProd(len,basketjson);
 }
 
 function connectProd(index,basketjson,callback){
   let x= new XMLHttpRequest();
   x.open("GET",serverUrl+"getProd?id="+(basketjson.content[index].ProductId));
+  x.addEventListener("error", function(event){
+    alert("Oops something went wrong, try again");
+  });
   x.onreadystatechange = ()=>{
     if (x.readyState == 4 && x.status == 200) {
       text ="";
@@ -68,12 +79,44 @@ function setProd(prodjson,i,basketjson){
 function delItem(id){
   let x = new XMLHttpRequest();
   x.open("GET", serverUrl+"delItem/?id="+id);
+  x.addEventListener("error", function(event){
+    alert("Oops something went wrong, try again");
+  });
   x.onreadystatechange = ()=>{
     if (x.readyState == 4 && x.status == 200) {
       text ="";
       text =x.responseText;
       if (text == "true"){
-        window.location.href = "Kurv.html";
+        document.getElementById(`orderlineid${id}`).innerHTML = "";
+        basketSize--;
+        if (basketSize==0){
+          document.getElementById('buybutton').innerHTML = "";
+          document.getElementById('tomkurv').innerHTML = "Din kurv er tom";
+        }
+        //window.location.href = "Kurv.html";
+      } else {
+        alert("fejl");
+      }
+    }
+  }
+  x.send();
+}
+
+function buyStuf(){
+  let userId = sessionStorage.getItem("UserId");
+  let x = new XMLHttpRequest();
+  x.open("GET", serverUrl+"getOrders/?id="+userId);
+  x.addEventListener("error", function(event){
+    alert("Oops something went wrong, try again");
+  });
+  x.onreadystatechange = ()=>{
+    if (x.readyState == 4 && x.status == 200) {
+      text ="";
+      text =x.responseText;
+      if (text){
+        sessionStorage.setItem("OrderId",text);
+        alert("Dine ting er på vej (NOT)!");
+        window.location.href = "index.html";
       } else {
         alert("fejl");
       }

@@ -3,7 +3,13 @@ const serverUrl = "http://localhost:8080/";
 function noProd(callback){
   let no=0;
   let x = new XMLHttpRequest();
+  x.addEventListener("error", function(event){
+    alert("Oops something went wrong, try again");
+  });
   x.open("GET",serverUrl+"noProd");
+  x.addEventListener("error", function(event){
+    alert("Oops something went wrong, try again");
+  });
   x.onreadystatechange = () =>{
     if (x.readyState == 4 && x.status == 200) {
       no = parseInt(x.responseText,10);
@@ -21,6 +27,9 @@ function noProd(callback){
 function connectProd(index,callback){
   let x= new XMLHttpRequest();
   x.open("GET",serverUrl+"getProd?id="+(index+1));
+  x.addEventListener("error", function(event){
+    alert("Oops something went wrong, try again");
+  });
   x.onreadystatechange = ()=>{
     if (x.readyState == 4 && x.status == 200) {
       text ="";
@@ -51,6 +60,9 @@ function buy(nr){
                     };
     x = new XMLHttpRequest();
     x.open("POST", serverUrl+"addProd/");
+    x.addEventListener("error", function(event){
+      alert("Oops something went wrong, try again");
+    });
     x.setRequestHeader("Content-Type", "text/plain");
     x.onreadystatechange = function (){
       if (this.readyState == 4 && this.status == 200) {

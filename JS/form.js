@@ -41,7 +41,7 @@ function formSub(form,type){
   x.open("POST", serverUrl+type+"/");
   x.setRequestHeader("Content-Type", "text/plain");
   x.addEventListener("error", function(event){
-    alert("Oops" + x.statusText);
+    alert("Oops something went wrong, try again");
   });
   x.onreadystatechange = function (){
     if (this.readyState == 4 && this.status == 200) {
